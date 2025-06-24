@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شركة العقارات المميزة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    body {
+      background-color: #f4f6f9;
+      color: #222;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: linear-gradient(90deg, #004080, #0066cc);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #ffe082;
+    }
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1560185127-6ed189bf01d0');
+      background-size: cover;
+      background-position: center;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 1px 1px 5px #000;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 52px;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 22px;
+    }
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #fff;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -10px); }
+    }
+    .section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .filter-bar {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .filter-bar input {
+      padding: 10px;
+      width: 300px;
+      max-width: 90%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .properties {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 15px;
+    }
+    .card-body h3 {
+      margin-bottom: 10px;
+      color: #004080;
+    }
+    .about, .contact {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 25px;
+    }
+    .contact form label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #004080;
+      color: white;
+      padding: 12px 25px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #0066cc;
+    }
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .popup, .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    .overlay {
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+    .popup {
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      z-index: 1000;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .popup h3 { color: #004080; margin-bottom: 15px; }
+  </style>
+</head>
+<body><header>
+  <h1>شركة العقارات المميزة</h1>
+  <nav>
+    <a href="#properties">العقارات</a>
+    <a href="#about">من نحن</a>
+    <a href="#contact">تواصل معنا</a>
+  </nav>
+</header><section class="hero">
+  <div>
+    <h1>امتلك بيت أحلامك اليوم</h1>
+    <p>أفضل العروض، بأفضل المواقع وبأفضل الأسعار</p>
+    <div class="scroll-down">▼ اسحب للأسفل</div>
+  </div>
+</section><section class="section" id="properties">
+  <h2 style="text-align:center; margin-bottom: 30px; color:#004080;">عقاراتنا المميزة</h2>
+  <div class="filter-bar">
+    <input type="text" id="searchInput" placeholder="ابحث عن اسم العقار..." oninput="filterProperties()">
+  </div>
+  <div class="properties" id="propertyList">
+    <div class="card" onclick="showPopup('فيلا فاخرة في التجمع', 'تقع في موقع مميز بالقاهرة الجديدة مع حديقة خاصة.')">
+      <img src="https://images.unsplash.com/photo-1572120360610-d971b9b78847" alt="عقار 1">
+      <div class="card-body">
+        <h3>فيلا فاخرة في التجمع</h3>
+        <p>القاهرة الجديدة - 5,000,000 جنيه</p>
+      </div>
+    </div>
+    <div class="card" onclick="showPopup('شقة في الشيخ زايد', 'شقة أنيقة في قلب مدينة الشيخ زايد قريبة من جميع الخدمات.')">
+      <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="عقار 2">
+      <div class="card-body">
+        <h3>شقة سكنية في الشيخ زايد</h3>
+        <p>6 أكتوبر - 1,200,000 جنيه</p>
+      </div>
+    </div>
+    <div class="card" onclick="showPopup('دوبلكس في المعادي', 'تصميم داخلي فاخر وموقع استراتيجي بالقرب من الكورنيش.')">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="عقار 3">
+      <div class="card-body">
+        <h3>دوبلكس راقي في المعادي</h3>
+        <p>المعادي - 3,800,000 جنيه</p>
+      </div>
+    </div>
+  </div>
+</section><section class="section about" id="about">
+  <h2 style="color:#004080;">من نحن</h2>
+  <p>نحن شركة متخصصة في تقديم أفضل الخدمات العقارية في مصر. نسعى لتوفير خيارات عقارية فاخرة تناسب جميع الأذواق وتلبي تطلعات عملائنا بأعلى جودة ومصداقية.</p>
+</section><section class="section contact" id="contact">
+<section class="section contact" id="contact">
+  <h2 style="color:#004080; text-align:center;">تواصل معنا</h2>
+  <p style="text-align:center; max-width:600px; margin:auto; margin-bottom:30px;">
+    نحن هنا للإجابة على جميع استفساراتك. لا تتردد في مراسلتنا وسنقوم بالرد عليك في أسرع وقت ممكن.
+  </p>
+  <form onsubmit="submitForm(event)" style="max-width:600px; margin:auto;">
+    <div style="display:flex; flex-wrap:wrap; gap:20px;">
+      <div style="flex:1; min-width:250px;">
+        <label>الاسم الكامل:</label>
+        <input type="text" placeholder="اكتب اسمك الكامل" required>
+      </div>
+      <div style="flex:1; min-width:250px;">
+        <label>رقم الهاتف:</label>
+        <input type="tel" placeholder="مثال: 01012345678" required>
+      </div>
+    </div>
+    <label style="margin-top:20px; display:block;">البريد الإلكتروني (اختياري):</label>
+    <input type="email" placeholder="example@email.com"><label style="margin-top:20px; display:block;">الرسالة:</label>
+<textarea rows="5" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
+
+<button type="submit">📩 إرسال الرسالة</button>
+
+  </form>  <div style="text-align:center; margin-top:40px;">
+    <p style="margin-bottom:15px; font-weight:bold; color:#004080;">تواصل معنا عبر وسائل التواصل:</p>
+    <a href="https://wa.me/201012345678" target="_blank" style="margin:0 10px; font-size:20px; color:#25D366; text-decoration:none;">
+      واتساب 📱
+    </a>
+    <a href="https://www.facebook.com/yourpage" target="_blank" style="margin:0 10px; font-size:20px; color:#1877f2; text-decoration:none;">
+      فيسبوك 🌐
+    </a>
+    <a href="https://t.me/yourchannel" target="_blank" style="margin:0 10px; font-size:20px; color:#0088cc; text-decoration:none;">
+      تليجرام ✈
+    </a>
+    <a href="mailto:info@example.com" target="_blank" style="margin:0 10px; font-size:20px; color:#ff6f00; text-decoration:none;">
+      البريد الإلكتروني ✉
+    </a>
+  </div>  <div id="live-chat" style="margin-top:50px; max-width:600px; margin-inline:auto; text-align:center;">
+    <p style="font-weight:bold; color:#004080;">أو تحدث معنا مباشرة:</p>
+    <button onclick="alert('سيتم توصيلك بأحد ممثلي خدمة العملاء.')" style="padding:10px 20px; background:#28a745; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+      💬 فتح المحادثة المباشرة
+    </button>
+  </div>
+</section>
+
+  </form>
+</section><div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h3 id="popup-title"></h3>
+  <p id="popup-desc"></p>
+  <button onclick="closePopup()">إغلاق</button>
+</div><footer>
+  &copy; 2025 شركة العقارات المميزة. جميع الحقوق محفوظة.
+</footer><script>
+  function showPopup(title, desc) {
+    document.getElementById('popup-title').innerText = title;
+    document.getElementById('popup-desc').innerText = desc;
+    document.getElementById('popup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+  }
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+  }
+  function submitForm(event) {
+    event.preventDefault();
+    alert('تم إرسال رسالتك بنجاح!');
+  }
+  function filterProperties() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('#propertyList .card');
+    cards.forEach(card => {
+      const title = card.querySelector('h3').innerText.toLowerCase();
+      card.style.display = title.includes(input) ? 'block' : 'none';
+    });
+  }
+</script></body>
+</html>
